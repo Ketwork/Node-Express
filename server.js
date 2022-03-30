@@ -31,7 +31,7 @@ if (!process.env.DISABLE_XORIGIN) {
 }
 
 // CSS file is accessed here
-// app.use("/public", express.static(process.cwd() + "/public"));
+app.use("/public", express.static(process.cwd() + "/public"));
 
 // app.route("/_api/package.json").get(function (req, res, next) {
 //   console.log("requested");
@@ -42,9 +42,9 @@ if (!process.env.DISABLE_XORIGIN) {
 // });
 
 //route to index.html
-// app.route("/").get(function (req, res) {
-//   res.sendFile(process.cwd() + "/views/index.html");
-// });
+app.route("/").get(function (req, res) {
+  res.sendFile(process.cwd() + "/views/index.html");
+});
 
 // // Respond not found to all the wrong routes
 // app.use(function (req, res, next) {
