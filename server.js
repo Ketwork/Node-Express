@@ -42,25 +42,15 @@ app.use("/public", express.static(process.cwd() + "/public"));
 // });
 
 //route to index.html
-app.route("/").get(function (req, res) {
-  res.sendFile(process.cwd() + "/views/index.html");
-});
-
-// // Respond not found to all the wrong routes
-// app.use(function (req, res, next) {
-//   res.status(404);
-//   res.type("txt").send("Not found");
+// app.route("/").get(function (req, res) {
+//   res.sendFile(process.cwd() + "/views/index.html");
 // });
 
-// Error Middleware
-// app.use(function (err, req, res, next) {
-//   if (err) {
-//     res
-//       .status(err.status || 500)
-//       .type("txt")
-//       .send(err.message || "SERVER ERROR");
-//   }
-// });
+
+app.get("/", function(req, res) {
+  res.send('Hello Express');
+})
+
 
 //Listen on port set in environment variable or default to 3000
 const port = process.env.PORT || 3000;
