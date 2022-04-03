@@ -31,7 +31,7 @@ if (!process.env.DISABLE_XORIGIN) {
 }
 
 // CSS file is accessed here
-app.use("/public", express.static(process.cwd() + "/public"));
+// app.use("/public", express.static(process.cwd() + "/public"));
 
 // app.route("/_api/package.json").get(function (req, res, next) {
 //   console.log("requested");
@@ -41,14 +41,16 @@ app.use("/public", express.static(process.cwd() + "/public"));
 //   });
 // });
 
-//route to index.html
-// app.route("/").get(function (req, res) {
-//   res.sendFile(process.cwd() + "/views/index.html");
-// });
+// sends a single string
+// app.get("/", function(req, res) {
+//   res.send('Hello Express');
+// })
 
-
+// sends index.html file
+// __dirname Gives absolute path of the directory that contains the currently executing file.
 app.get("/", function(req, res) {
-  res.send('Hello Express');
+  let absolutePath = __dirname + "/views/index.html"
+  res.sendFile(absolutePath)
 })
 
 
