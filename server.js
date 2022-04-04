@@ -53,6 +53,9 @@ app.get("/", function(req, res) {
   res.sendFile(absolutePath)
 })
 
+// CSS
+app.use("/public", express.static(__dirname + "/public"));
+
 
 //Listen on port set in environment variable or default to 3000
 const port = process.env.PORT || 3000;
