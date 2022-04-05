@@ -45,7 +45,7 @@ if (!process.env.DISABLE_XORIGIN) {
 
 // sends index.html file
 // __dirname Gives absolute path of the directory that contains the currently executing file.
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   let absolutePath = __dirname + "/views/index.html";
   res.sendFile(absolutePath);
 });
@@ -53,7 +53,7 @@ app.get("/", function (req, res) {
 // CSS
 app.use("/public", express.static(__dirname + "/public"));
 
-app.get("/json", function (req, res) {
+app.get("/json", (req, res) => {
   res.json({ message: "Hello json" });
 });
 
