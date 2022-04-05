@@ -30,9 +30,6 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
-// CSS file is accessed here
-// app.use("/public", express.static(process.cwd() + "/public"));
-
 // app.route("/_api/package.json").get(function (req, res, next) {
 //   console.log("requested");
 //   fs.readFile(__dirname + "/package.json", function (err, data) {
@@ -48,14 +45,17 @@ if (!process.env.DISABLE_XORIGIN) {
 
 // sends index.html file
 // __dirname Gives absolute path of the directory that contains the currently executing file.
-app.get("/", function(req, res) {
-  let absolutePath = __dirname + "/views/index.html"
-  res.sendFile(absolutePath)
-})
+app.get("/", function (req, res) {
+  let absolutePath = __dirname + "/views/index.html";
+  res.sendFile(absolutePath);
+});
 
 // CSS
 app.use("/public", express.static(__dirname + "/public"));
 
+app.get("/json", function (req, res) {
+  res.json({ message: "Hello json" });
+});
 
 //Listen on port set in environment variable or default to 3000
 const port = process.env.PORT || 3000;
