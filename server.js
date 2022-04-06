@@ -10,7 +10,6 @@ var myApp = require("./myApp");
 // var fs = require("fs");
 var express = require("express");
 var app = express();
-require('dotenv').config()
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function (req, res, next) {
@@ -39,29 +38,6 @@ if (!process.env.DISABLE_XORIGIN) {
 //   });
 // });
 
-// sends a single string
-// app.get("/", function(req, res) {
-//   res.send('Hello Express');
-// })
-
-// sends index.html file
-// __dirname Gives absolute path of the directory that contains the currently executing file.
-app.get("/", (req, res) => {
-  let absolutePath = __dirname + "/views/index.html";
-  res.sendFile(absolutePath);
-});
-
-// public folder which contains CSS
-app.use("/public", express.static(__dirname + "/public"));
-
-// json data at URL/json
-app.get("/json", (req, res) => {
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    res.json({ message: "HELLO JSON" });
-  } else {
-    res.json({ message: "Hello json" });
-  }
-});
 
 //Listen on port set in environment variable or default to 3000
 const port = process.env.PORT || 3000;
