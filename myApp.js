@@ -1,15 +1,15 @@
 var express = require("express");
 var app = express();
 var bGround = require("fcc-express-bground");
-require('dotenv').config();
+require("dotenv").config();
 
 // middleware - for every request it logs method path & ip
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 });
 
-console.log("Hello World");
+// console.log("Hello World");
 
 // sends a single string
 // app.get("/", function(req, res) {
@@ -28,17 +28,17 @@ app.use("/public", express.static(__dirname + "/public"));
 
 // json data at URL/json
 app.get("/json", (req, res) => {
-  console.log(process.env.MESSAGE_STYLE, "<= message style")
+  console.log(process.env.MESSAGE_STYLE, "<= message style");
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    res.json({ "message": "HELLO JSON" });
+    res.json({ message: "HELLO JSON" });
   } else {
-    res.json({ "message": "Hello json" });
+    res.json({ message: "Hello json" });
   }
 });
 
 // chained middleware - returns current time
 app.get(
-  '/now',
+  "/now",
   (req, res, next) => {
     req.time = new Date().toString();
     next();
@@ -47,5 +47,9 @@ app.get(
     res.send({ time: req.time });
   }
 );
+
+app.get("/:word/echo", (req, res) => {
+  res.json({ echo: req.params.word });
+});
 
 module.exports = app;
