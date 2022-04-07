@@ -3,7 +3,7 @@ var app = express();
 var bGround = require("fcc-express-bground");
 require('dotenv').config();
 
-
+// middleware - for every request it logs method path & ip
 app.use(function(req, res, next) {
   console.log("I'm a middleware...");
   console.log(req.method + " " + req.path + "+" + req.ip);
