@@ -48,8 +48,13 @@ app.get(
   }
 );
 
+
+// Get Route Parameter Input from the Client. Returns word entered in url.
 app.get("/:word/echo", (req, res) => {
-  res.json({ echo: req.params.word });
+  // res.json({ echo: req.params.word });
+  // above word object deconstrusted 
+  const { word } = req.params;
+  res.json({ echo: word })
 });
 
 module.exports = app;
