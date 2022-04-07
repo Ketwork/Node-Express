@@ -6,7 +6,7 @@ require('dotenv').config();
 
 app.use(function(req, res, next) {
   console.log("I'm a middleware...");
-  console.log(req.method, req.path, req.ip);
+  console.log(req.method + " " + req.path + "+" + req.ip);
   next();
 });
 
