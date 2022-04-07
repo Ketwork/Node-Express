@@ -5,7 +5,6 @@ require('dotenv').config();
 
 // middleware - for every request it logs method path & ip
 app.use(function(req, res, next) {
-  console.log("I'm a middleware...");
   console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 });
@@ -36,5 +35,17 @@ app.get("/json", (req, res) => {
     res.json({ "message": "Hello json" });
   }
 });
+
+// chained middleware - returns current time
+app.get(
+  '/now',
+  (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+  },
+  (req, res) => {
+    res.send({ time: req.time });
+  }
+);
 
 module.exports = app;
