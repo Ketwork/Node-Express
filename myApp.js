@@ -1,7 +1,14 @@
 var express = require("express");
 var app = express();
 var bGround = require("fcc-express-bground");
-require('dotenv').config()
+require('dotenv').config();
+
+
+app.use(function(req, res, next) {
+  console.log("I'm a middleware...");
+  console.log(req.method, req.path, req.ip);
+  next();
+});
 
 console.log("Hello World");
 
