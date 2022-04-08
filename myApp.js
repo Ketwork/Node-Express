@@ -57,4 +57,11 @@ app.get("/:word/echo", (req, res) => {
   res.json({ echo: word })
 });
 
+//encoding the data after the route path, using a query string
+// i.e - http://localhost:3000/name?first=Ket&last=Patel
+app.get("/name", (req, res) => {
+  res.json({name: req.query.first + " " + req.query.last});
+});
+
+
 module.exports = app;
