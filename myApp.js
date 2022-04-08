@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var bGround = require("fcc-express-bground");
 require("dotenv").config();
-var bodyParser = require('body-parser')
+var bodyParser = require("body-parser");
 
 // middleware - for every request it logs method path & ip
 app.use(function (req, res, next) {
@@ -10,12 +10,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use((req, res, next) => {
-//   bodyParser.urlencoded({extended: false})
-//   console.log(bodyParser);
-//   next()
-// })
-
+// mount body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // console.log("Hello World");
@@ -57,20 +52,23 @@ app.get(
   }
 );
 
-
 // Get Route Parameter Input from the Client. Returns word entered in url.
 app.get("/:word/echo", (req, res) => {
   // res.json({ echo: req.params.word });
-  // above word object deconstrusted 
+  // above word object deconstrusted
   const { word } = req.params;
-  res.json({ echo: word })
+  res.json({ echo: word });
 });
 
 //encoding the data after the route path, using a query string
 // i.e - http://localhost:3000/name?first=Ket&last=Patel
 app.get("/name", (req, res) => {
-  res.json({name: req.query.first + " " + req.query.last});
+  res.json({ name: req.query.first + " " + req.query.last });
 });
 
+// Get Data from POST Requests
+app.post("/name", (req, res) => {
+  res.json({ name: req.body.first + " " + req.body.last });
+});
 
 module.exports = app;
