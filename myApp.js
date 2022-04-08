@@ -10,11 +10,13 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use((req, res, next) => {
-  bodyParser.urlencoded({extended: false})
-  console.log(bodyParser);
-  next()
-})
+// app.use((req, res, next) => {
+//   bodyParser.urlencoded({extended: false})
+//   console.log(bodyParser);
+//   next()
+// })
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // console.log("Hello World");
 
